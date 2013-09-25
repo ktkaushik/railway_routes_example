@@ -5,6 +5,7 @@ exports.init = function (app) {
 
   map.root('home#index');
   map.get('/posts', 'posts#index');
+  map.resources('users');
 };
 
 function handler(ns, controller, action) {
