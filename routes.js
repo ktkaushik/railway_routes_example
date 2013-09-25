@@ -4,7 +4,7 @@ exports.init = function (app) {
   var map = new routing.Map(app, handler);
 
   map.root('home#index');
-  
+  map.get('/posts', 'posts#index');
 };
 
 function handler(ns, controller, action) {
