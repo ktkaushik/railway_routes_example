@@ -7,7 +7,9 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , fs = require('fs')
+  , path = require('path')
+  , mongoose = require('mongoose');
 
 
 var app = express();
@@ -23,7 +25,28 @@ app.configure(function(){
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
+// module dependencies
 
+mongoose.set('debug', true);
+var connection = mongoose.connect('mongodb://localhost/users', {
+  server: {
+    poolSize: 3
+  }
+});
+
+// load models...
+var modelsPath = path.join(process.cwd(), 'models')
+  , models = fs.readdirSync(modelsPath);
+
+// load each model with the exception 
+// of files prefixed with an underscore
+models.forEach(function(model) {
+  if (model.charAt(0) !== '_') {
+    require(path.join(modelsPath, model));
+  }
+});
+
+exports.connection = connection;
 
 app.configure('development', function(){
   app.use(express.errorHandler());
