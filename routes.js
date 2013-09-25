@@ -6,6 +6,9 @@ exports.init = function (app) {
   map.root('home#index');
   map.get('/posts', 'posts#index');
   map.resources('users');
+  map.namespace('admin', function (admin) {
+    admin.resources('tasks');
+  });
 };
 
 function handler(ns, controller, action) {
