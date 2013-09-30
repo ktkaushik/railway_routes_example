@@ -1,4 +1,5 @@
-var routing = require('railway-routes');
+var routing = require('railway-routes'),
+    kontroller = require('kontroller');;
 
 exports.init = function (app) {
   var map = new routing.Map(app, handler);
@@ -9,6 +10,9 @@ exports.init = function (app) {
   map.namespace('admin', function (admin) {
     admin.resources('tasks');
   });
+
+  // Stories Kontroller
+  map.get('/stories','stories#brake');
 };
 
 function handler(ns, controller, action) {
