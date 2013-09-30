@@ -11,7 +11,6 @@ var express = require('express')
   , path = require('path')
   , mongoose = require('mongoose');
 
-
 var app = express();
 
 app.configure(function(){
