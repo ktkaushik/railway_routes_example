@@ -12,6 +12,6 @@
     "railway-routes": "*",
     "mongoose": "*",
     "kontroller": "*",
-    "acl": "*"
+    "acl": "git://github.com/hintwhisper/node_acl"
   }
 }
